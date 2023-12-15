@@ -1,0 +1,266 @@
+<!-- 
+                         __       __       _ 
+   ____ ___     _  __   / /_     / /_     (_)
+  / __ `__ \   | |/_/  / __ \   / __ \   / / 
+ / / / / / /  _>  <   / /_/ /  / /_/ /  / /  
+/_/ /_/ /_/  /_/|_|  /_.___/  /_.___/  /_/   
+
+TODOS:
+use '/photo' etc to navigate tabs?
+support subsections - gif per subsection
+custom domain?
+-->
+
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<title style="color: white">m x b b i</title>
+	<link rel='icon' type='image/x-icon' href='ico/favicon.ico'>
+	<!------------------------------------------------>
+	<!-- S T Y L E -->
+	<!------------------------------------------------>
+	<style type="text/css">
+		body {
+			margin: 0;
+			height: 100%;
+			text-align: center;
+			background-image: url(gif/sparkle.gif);
+			color: white;
+		}
+
+		h1 { text-shadow : 0 0 32px black; }
+
+		h2 { color: white; }
+
+		button {
+			background-color: black;
+			color: white;
+		}
+
+		iframe {
+			height: 450px;
+			width: 800px;
+		}
+
+		a:hover {
+			color: orange;
+			background-color: transparent;
+		}
+
+		.tab {
+			display: inline-block;
+			margin-right: 35px;
+			margin-left: 35px;
+			cursor: url(forward.png), auto;
+		}
+
+		.screen {
+			display: none;
+			width: 200px
+		}
+
+		.button {
+			cursor: url(forward.png), auto;
+		}
+
+		.page {
+			display: none;
+		}
+
+		.caption {
+			display: block;
+		}
+
+		#tabMenu {
+			display: inline-block;
+		}
+
+		#memeScreen {
+			width: 500px;
+		}
+	</style>
+</head>
+	
+<body>
+	<!------------------------------------------------>
+	<!-- H E L P E R   S C R I P T S -->
+	<!------------------------------------------------>
+	<script> 
+		function get(id) {
+			return document.getElementById(id)
+		}
+
+		function getAll(clazz) {
+			return document.getElementsByClassName(clazz)
+		}
+
+		function random(min, max) { 
+			return (min + (Math.floor(Math.random() * (max - min))))
+		}
+
+		function shuffle(array) {
+			for (i = 0; i < array.length; i++) {
+				randomIndex = random(i, array.length - 1)
+				temp = array[i]
+				array[i] = array[randomIndex]
+				array[randomIndex] = temp
+			}
+		}
+		
+		function playSound(name, volume = 1, format='.wav') {
+			audio = new Audio();
+			audio.volume = volume
+			audio.src = 'aud/' + name + format
+			audio.play();
+		}
+
+		function randomButton(value, maxValue) {
+			while (true) {
+				result = random(0, maxValue)
+				if (result != value) {
+					return result
+				}
+			}
+		}
+
+	</script>
+
+	<!------------------------------------------------>
+	<!-- H E A D I N G -->
+	<!------------------------------------------------>
+	<br>
+	<div style='display: inline-block;' id='header'>
+		<div style='float: left'>
+			<img src='gif/dovel.gif'/>
+		</div>
+		<div style='float: left'>
+			<img src='gif/letters/M.gif'/>
+			<img src='gif/letters/X.gif'/> 
+			<img src='gif/letters/B.gif'/>
+			<img src='gif/letters/B.gif'/>
+			<img src='gif/letters/I.gif'/>
+		</div>
+		<div style='float: right'>
+			<img src='gif/dover.gif'/>
+		</div>
+	</div>
+	<br>
+	<div style='float: center'>
+		<img src='gif/rose.gif'/>
+	</div>
+	<br>
+	<!------------------------------------------------>
+	<!-- T A B S -->
+	<!------------------------------------------------>
+	<div id='tabMenu'>
+		<div class='tab' page='art'>
+			<img src='gif/homer.gif'/>
+		</div>
+		<div class='tab' page='photo' >
+			<img src='gif/city.gif'/>
+		</div>
+		<div class='tab' page='writing' >
+			<img src='gif/aquarium.gif'/>
+		</div>
+	</div>
+	<script>
+		let tabs = getAll('tab')
+		Array.from(tabs).forEach(
+			(tab, index, array) => {
+				tab.onclick = (tab) => {
+					playSound('click2', .7)
+					hidePages()
+					page = get(event.target.parentElement.getAttribute('page'))
+					page.style.display = 'inline'
+				}
+			}
+		)
+
+		function hidePages() {
+			pages = getAll('page')
+			Array.from(pages).forEach(
+				(page) => {
+					page.style.display = 'none'
+				}
+			)
+		}
+	</script>
+	
+
+	<!------------------------------------------------>
+	<!-- A R T -->
+	<!------------------------------------------------>
+	<div class=page id=art>
+		<h1 style="color: purple;">Art<h1>
+		<div>
+			<img src='gif/arrowl.gif' class=button id='artLeft'/>
+			<img id=artScreen src='art/BottleAndGoblet.jpg'/>
+			<img src='gif/arrowr.gif' class=button id='artRight'/>
+		</div>
+	</div>
+	<script>
+		let art = [
+			'BottleAndGoblet.jpg',
+			//'Parents.JPG',
+			//'Pomegranate.JPG',
+			'WineAndOnion.jpg'
+		]
+		let artIndex = [0]
+		shuffle(art)
+		get('art').src = 'art/' + art[artIndex[0]]
+		//get('artLeft').onclick = getButtonFunction(artIndex, decrement, get('artScreen'), art, 'art')
+		//get('artRight').onclick = getButtonFunction(artIndex, increment, get('artScreen'), art, 'art')
+	</script>
+
+	
+	<!------------------------------------------------>
+	<!-- MEMES -->
+	<!------------------------------------------------>
+	<div class=page id=photo>
+		<h1 style="color: orange;">memes</h1>
+		<div>
+			<img src='gif/arrowl.gif' class=button id='memeLeft'/>
+			<img id=memeScreen class=screen/>
+			<img src='gif/arrowr.gif' class=button id='memeRight'/>
+		</div>
+		<img class=button id=photoRandom src='gif/random.gif'/>
+	</div>
+	<script>
+		let memes = ['1', '2', '3', '4', '5', '6', '7']
+		let memeIndex = 0
+		shuffle(memes)
+		get('memeScreen').src = 'memes/1.JPEG'
+		get('memeLeft').onclick = function() {
+			playSound('click', .5)
+			if (memeIndex == 0) {
+				memeIndex = memes.length - 1
+			} else {
+				memeIndex = memeIndex - 1;
+			}
+			get('memeScreen').src = 'memes/' + memes[memeIndex] + '.JPEG'
+		}
+		get('memeRight').onclick = function() {
+			if (memeIndex == memes.length - 1) {
+				memeIndex = 0
+			} else {
+				memeIndex = memeIndex + 1;
+			}
+			get('memeScreen').src = 'memes/' + memes[memeIndex] + '.JPEG'
+		}
+		//getButtonFunction(photoIndex, increment, get('photoScreen'), photos, 'photo')
+		//get('memeRandom').onclick = getButtonFunction(photoIndex, randomButton, get('photoScreen'), photos, 'photo')
+	</script>
+
+	<!------------------------------------------------>
+	<!-- W R I T I N G -->
+	<!------------------------------------------------>
+	<div class=page id=writing>
+		<h1 style="color: yellow;">Writing</h1>
+<!-- 
+		<h2><a href='https://bencelsi.github.io/writing/great-apes.html'>Great Apes</a></h2>
+		<h2><a href='https://bencelsi.github.io/writing/christian-bok.html'>Christian Bok: A Critic's Notations on His Book</a></h2>
+-->
+		<h2><a href='https://bencelsi.github.io/writing/youre-little.html'>You're Little</a></h2>
+	</div>
+</body>
+</html>
