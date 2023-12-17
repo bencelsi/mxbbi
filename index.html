@@ -6,16 +6,15 @@
 /_/ /_/ /_/  /_/|_|  /_.___/  /_.___/  /_/   
 
 TODOS:
-use '/photo' etc to navigate tabs?
-support subsections - gif per subsection
-custom domain?
+arrows higher up
+
 -->
 
 <!DOCTYPE html>
 <html lang='en'>
 <head>
 	<title style="color: white">m x b b i</title>
-	<link rel='icon' type='image/x-icon' href='ico/favicon.ico'>
+	<link rel='icon' type='image/x-icon' href='favicon.ico'>
 	<!------------------------------------------------>
 	<!-- S T Y L E -->
 	<!------------------------------------------------>
@@ -24,7 +23,7 @@ custom domain?
 			margin: 0;
 			height: 100%;
 			text-align: center;
-			background-image: url(gif/sparkle.gif);
+			background-image: url(gifs/backgrounds/sparkle.gif);
 			color: white;
 		}
 
@@ -35,6 +34,8 @@ custom domain?
 		button {
 			background-color: black;
 			color: white;
+			position: relative;
+    		top: -100px;
 		}
 
 		iframe {
@@ -114,14 +115,6 @@ custom domain?
 			audio.play();
 		}
 
-		function randomButton(value, maxValue) {
-			while (true) {
-				result = random(0, maxValue)
-				if (result != value) {
-					return result
-				}
-			}
-		}
 
 	</script>
 
@@ -131,36 +124,42 @@ custom domain?
 	<br>
 	<div style='display: inline-block;' id='header'>
 		<div style='float: left'>
-			<img src='gif/dovel.gif'/>
+			<img src='gifs/dovel.gif'/>
 		</div>
 		<div style='float: left'>
-			<img src='gif/letters/M.gif'/>
-			<img src='gif/letters/X.gif'/> 
-			<img src='gif/letters/B.gif'/>
-			<img src='gif/letters/B.gif'/>
-			<img src='gif/letters/I.gif'/>
+			<img src='gifs/letters/M.gif'/>
+			<img src='gifs/letters/X.gif'/> 
+			<img src='gifs/letters/B.gif'/>
+			<img src='gifs/letters/B.gif'/>
+			<img src='gifs/letters/I.gif'/>
 		</div>
 		<div style='float: right'>
-			<img src='gif/dover.gif'/>
+			<img src='gifs/dover.gif'/>
 		</div>
 	</div>
 	<br>
 	<div style='float: center'>
-		<img src='gif/rose.gif'/>
+		<img src='gifs/rose.gif'/>
 	</div>
-	<br>
+	<br><br><br>
 	<!------------------------------------------------>
 	<!-- T A B S -->
 	<!------------------------------------------------>
 	<div id='tabMenu'>
 		<div class='tab' page='art'>
-			<img src='gif/homer.gif'/>
+			<img src='gifs/tabs/art.gif'/>
 		</div>
-		<div class='tab' page='photo' >
-			<img src='gif/city.gif'/>
+		<div class='tab' page='bw' >
+			<img src='gifs/tabs/city.gif'/>
 		</div>
-		<div class='tab' page='writing' >
-			<img src='gif/aquarium.gif'/>
+		<div class='tab' page='school' >
+			<img src='gifs/tabs/memes.gif' style="width: 135px;"/>
+		</div>
+		<div class='tab' page='memes' >
+			<img src='gifs/tabs/digital.gif'/>
+		</div>
+		<div class='tab' page='memes' >
+			<img src='gifs/tabs/horse.gif'/>
 		</div>
 	</div>
 	<script>
@@ -193,9 +192,9 @@ custom domain?
 	<div class=page id=art>
 		<h1 style="color: purple;">Art<h1>
 		<div>
-			<img src='gif/arrowl.gif' class=button id='artLeft'/>
+			<img src='gifs/arrowr.gif' class=button id='artLeft'/>
 			<img id=artScreen src='art/BottleAndGoblet.jpg'/>
-			<img src='gif/arrowr.gif' class=button id='artRight'/>
+			<img src='gifs/arrowl.gif' class=button id='artRight'/>
 		</div>
 	</div>
 	<script>
@@ -217,11 +216,10 @@ custom domain?
 	<!-- MEMES -->
 	<!------------------------------------------------>
 	<div class=page id=photo>
-		<h1 style="color: orange;">memes</h1>
 		<div>
-			<img src='gif/arrowl.gif' class=button id='memeLeft'/>
+			<img src='gifs/arrowl.gif' class=button id='memeLeft'/>
 			<img id=memeScreen class=screen/>
-			<img src='gif/arrowr.gif' class=button id='memeRight'/>
+			<img src='gifs/arrowr.gif' class=button id='memeRight'/>
 		</div>
 		<img class=button id=photoRandom src='gif/random.gif'/>
 	</div>
@@ -231,7 +229,7 @@ custom domain?
 		shuffle(memes)
 		get('memeScreen').src = 'memes/1.JPEG'
 		get('memeLeft').onclick = function() {
-			playSound('click', .5)
+			playSound('punch2', .5)
 			if (memeIndex == 0) {
 				memeIndex = memes.length - 1
 			} else {
@@ -256,10 +254,8 @@ custom domain?
 	<!------------------------------------------------>
 	<div class=page id=writing>
 		<h1 style="color: yellow;">Writing</h1>
-<!-- 
-		<h2><a href='https://bencelsi.github.io/writing/great-apes.html'>Great Apes</a></h2>
-		<h2><a href='https://bencelsi.github.io/writing/christian-bok.html'>Christian Bok: A Critic's Notations on His Book</a></h2>
--->
+	
+
 		<h2><a href='https://bencelsi.github.io/writing/youre-little.html'>You're Little</a></h2>
 	</div>
 </body>
