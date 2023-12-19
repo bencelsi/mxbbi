@@ -27,10 +27,6 @@ arrows higher up
 			color: white;
 		}
 
-		h1 { text-shadow : 0 0 32px black; }
-
-		h2 { color: white; }
-
 		button {
 			background-color: black;
 			color: white;
@@ -43,11 +39,6 @@ arrows higher up
 			width: 800px;
 		}
 
-		a:hover {
-			color: orange;
-			background-color: transparent;
-		}
-
 		.tab {
 			display: inline-block;
 			margin-right: 35px;
@@ -56,8 +47,7 @@ arrows higher up
 		}
 
 		.screen {
-			display: none;
-			width: 200px
+			width: 500px
 		}
 
 		.button {
@@ -76,9 +66,6 @@ arrows higher up
 			display: inline-block;
 		}
 
-		#memeScreen {
-			width: 500px;
-		}
 	</style>
 </head>
 	
@@ -105,6 +92,22 @@ arrows higher up
 				temp = array[i]
 				array[i] = array[randomIndex]
 				array[randomIndex] = temp
+			}
+		}
+
+		function increment(value, maxValue) {
+			if (value == maxValue) {
+				return 0
+			} else {
+				return value + 1
+			}
+		}
+
+		function decrement(value, maxValue) {
+			if (bwIndex == 0) {
+				return maxValue
+			} else {
+				return value - 1
 			}
 		}
 		
@@ -146,20 +149,20 @@ arrows higher up
 	<!-- T A B S -->
 	<!------------------------------------------------>
 	<div id='tabMenu'>
-		<div class='tab' page='art'>
+		<div class='tab' page='main'>
 			<img src='gifs/tabs/art.gif'/>
+		</div>
+		<div class='tab' page='digital' >
+			<img src='gifs/tabs/digital.gif'/>
 		</div>
 		<div class='tab' page='bw' >
 			<img src='gifs/tabs/city.gif'/>
 		</div>
 		<div class='tab' page='school' >
+			<img src='gifs/tabs/horseride.gif'/>
+		</div>
+		<div class='tab' page='memes' >
 			<img src='gifs/tabs/memes.gif' style="width: 135px;"/>
-		</div>
-		<div class='tab' page='memes' >
-			<img src='gifs/tabs/digital.gif'/>
-		</div>
-		<div class='tab' page='memes' >
-			<img src='gifs/tabs/horse.gif'/>
 		</div>
 	</div>
 	<script>
@@ -178,85 +181,117 @@ arrows higher up
 		function hidePages() {
 			pages = getAll('page')
 			Array.from(pages).forEach(
-				(page) => {
-					page.style.display = 'none'
-				}
+				(page) => { page.style.display = 'none' }
 			)
 		}
 	</script>
 	
 
+
 	<!------------------------------------------------>
-	<!-- A R T -->
+	<!-- B W -->
 	<!------------------------------------------------>
-	<div class=page id=art>
-		<h1 style="color: purple;">Art<h1>
+	<div class=page id=bw>
+		<br>
 		<div>
-			<img src='gifs/arrowr.gif' class=button id='artLeft'/>
-			<img id=artScreen src='art/BottleAndGoblet.jpg'/>
-			<img src='gifs/arrowl.gif' class=button id='artRight'/>
+			<img src='gifs/arrowl.gif' class=button id='bwLeft'/>
+			<img src='gifs/arrowr.gif' class=button id='bwRight'/>
 		</div>
+		<img id=bwScreen src='art/bw/1.jpeg' class="screen"/>
 	</div>
 	<script>
-		let art = [
-			'BottleAndGoblet.jpg',
-			//'Parents.JPG',
-			//'Pomegranate.JPG',
-			'WineAndOnion.jpg'
-		]
-		let artIndex = [0]
-		shuffle(art)
-		get('art').src = 'art/' + art[artIndex[0]]
-		//get('artLeft').onclick = getButtonFunction(artIndex, decrement, get('artScreen'), art, 'art')
-		//get('artRight').onclick = getButtonFunction(artIndex, increment, get('artScreen'), art, 'art')
+		let bw = [
+			"1.jpeg",
+			"2.jpeg",
+			"3.jpeg",
+			"4.jpeg",
+			"5.jpeg",
+			"6.jpeg",
+			"7.jpeg",
+			"8.jpeg",
+			"9.jpeg",
+			"10.jpeg",
+			"11.jpeg",
+			"12.jpeg",
+			"13.jpeg",
+			"14.jpeg",
+			"15.jpeg",
+			"16.jpeg",
+			"17.jpeg",
+			"18.jpeg",
+			"19.jpeg",
+			"20.jpeg",
+			"21.jpeg",
+			"22.jpeg",
+			"23.jpeg",
+			"24.jpeg",
+			"25.jpeg",
+			"26.jpeg",
+			"27.jpeg",
+			"28.jpeg",
+			"29.jpeg",
+			"30.jpeg",
+			"31.jpeg",
+			"32.jpeg",
+			"33.jpeg",
+			"34.jpeg",
+			"35.jpeg",
+			"36.jpeg",
+			"37.jpeg",
+			"38.jpeg",
+			"39.jpeg",
+			"40.jpeg",
+			"41.jpeg",
+			"42.jpeg",
+			"43.jpeg",
+			"44.jpeg",
+			"45.jpeg",
+			"46.jpeg",
+			"47.jpeg",
+			"48.jpeg",
+			"49.jpeg",
+			"50.jpeg",
+			"51.jpeg",
+			"52.jpeg"]
+		let bwIndex = 0
+		shuffle(bw)
+		get('bw').src = 'bw/' + bw[bwIndex]
+		get('bwLeft').onclick = function() {
+			playSound('punch2', .5)
+			bwIndex = decrement(bwIndex, bw.length - 1)
+			get('bwScreen').src = 'art/bw/' + bw[bwIndex]
+		}
+		get('bwRight').onclick = function() {
+			bwIndex = increment(bwIndex, bw.length - 1)
+			get('bwScreen').src = 'art/bw/' + bw[bwIndex]
+		}
 	</script>
 
-	
 	<!------------------------------------------------>
 	<!-- MEMES -->
 	<!------------------------------------------------>
-	<div class=page id=photo>
+	<div class=page id=memes>
 		<div>
 			<img src='gifs/arrowl.gif' class=button id='memeLeft'/>
-			<img id=memeScreen class=screen/>
 			<img src='gifs/arrowr.gif' class=button id='memeRight'/>
 		</div>
-		<img class=button id=photoRandom src='gif/random.gif'/>
+		<img src='art/memes/1.jpeg' class=screen/>
 	</div>
 	<script>
-		let memes = ['1', '2', '3', '4', '5', '6', '7']
+		let memes = ['1.jpeg', '2.jpeg', '3.jpeg', '4.jpeg', '5.jpeg', '6.jpeg', '7.jpeg']
 		let memeIndex = 0
 		shuffle(memes)
-		get('memeScreen').src = 'memes/1.JPEG'
+		get('memeScreen').src = 'memes/' + memes[memeIndex]
 		get('memeLeft').onclick = function() {
-			playSound('punch2', .5)
-			if (memeIndex == 0) {
-				memeIndex = memes.length - 1
-			} else {
-				memeIndex = memeIndex - 1;
-			}
-			get('memeScreen').src = 'memes/' + memes[memeIndex] + '.JPEG'
+			memeIndex = decrement(memeIndex, memes.length - 1)
+			get('memeScreen').src = 'memes/' + memes[memeIndex]
 		}
 		get('memeRight').onclick = function() {
-			if (memeIndex == memes.length - 1) {
-				memeIndex = 0
-			} else {
-				memeIndex = memeIndex + 1;
-			}
-			get('memeScreen').src = 'memes/' + memes[memeIndex] + '.JPEG'
+			memeIndex = increment(memeIndex, memes.length - 1)
+			get('memeScreen').src = 'memes/' + memes[memeIndex]
 		}
-		//getButtonFunction(photoIndex, increment, get('photoScreen'), photos, 'photo')
-		//get('memeRandom').onclick = getButtonFunction(photoIndex, randomButton, get('photoScreen'), photos, 'photo')
 	</script>
 
-	<!------------------------------------------------>
-	<!-- W R I T I N G -->
-	<!------------------------------------------------>
-	<div class=page id=writing>
-		<h1 style="color: yellow;">Writing</h1>
-	
 
-		<h2><a href='https://bencelsi.github.io/writing/youre-little.html'>You're Little</a></h2>
-	</div>
 </body>
 </html>
