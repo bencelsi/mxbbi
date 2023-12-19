@@ -24,7 +24,6 @@ arrows higher up
 			height: 100%;
 			text-align: center;
 			background-image: url(gifs/backgrounds/sparkle.gif);
-			color: white;
 		}
 
 		button {
@@ -32,11 +31,6 @@ arrows higher up
 			color: white;
 			position: relative;
     		top: -100px;
-		}
-
-		iframe {
-			height: 450px;
-			width: 800px;
 		}
 
 		.tab {
@@ -96,6 +90,7 @@ arrows higher up
 		}
 
 		function increment(value, maxValue) {
+			console.log(value)
 			if (value == maxValue) {
 				return 0
 			} else {
@@ -104,21 +99,20 @@ arrows higher up
 		}
 
 		function decrement(value, maxValue) {
-			if (bwIndex == 0) {
+			console.log(value)
+			if (value == 0) {
 				return maxValue
 			} else {
 				return value - 1
 			}
 		}
 		
-		function playSound(name, volume = 1, format='.wav') {
+		function playSound(name) {
 			audio = new Audio();
-			audio.volume = volume
-			audio.src = 'aud/' + name + format
+			audio.volume = .3
+			audio.src = 'sounds/' + name + '.wav'
 			audio.play();
 		}
-
-
 	</script>
 
 	<!------------------------------------------------>
@@ -144,7 +138,9 @@ arrows higher up
 	<div style='float: center'>
 		<img src='gifs/rose.gif'/>
 	</div>
+	<div>happy birthday ❤️  -ben</div>
 	<br><br><br>
+
 	<!------------------------------------------------>
 	<!-- T A B S -->
 	<!------------------------------------------------>
@@ -155,22 +151,27 @@ arrows higher up
 		<div class='tab' page='digital' >
 			<img src='gifs/tabs/digital.gif'/>
 		</div>
-		<div class='tab' page='bw' >
-			<img src='gifs/tabs/city.gif'/>
+		<div class='tab' page='cartoon' >
+			<img src='gifs/tabs/homer.gif ' style="width: 175px"/>
+		</div>
+		<div class='tab' page='bw'>
+			<img src='gifs/tabs/city.gif' style="width: 150px"/>
 		</div>
 		<div class='tab' page='school' >
 			<img src='gifs/tabs/horseride.gif'/>
 		</div>
 		<div class='tab' page='memes' >
-			<img src='gifs/tabs/memes.gif' style="width: 135px;"/>
+			<img src='gifs/tabs/guy.gif' style="width: 135px;"/>
 		</div>
+		<br>
 	</div>
+	<br>
 	<script>
 		let tabs = getAll('tab')
 		Array.from(tabs).forEach(
 			(tab, index, array) => {
 				tab.onclick = (tab) => {
-					playSound('click2', .7)
+					playSound('punch')
 					hidePages()
 					page = get(event.target.parentElement.getAttribute('page'))
 					page.style.display = 'inline'
@@ -185,8 +186,157 @@ arrows higher up
 			)
 		}
 	</script>
-	
 
+	<!------------------------------------------------>
+	<!-- M A I N -->
+	<!------------------------------------------------>
+	<div class=page id=main>
+		<br>
+		<div>
+			<img src='gifs/arrowl.gif' class=button id='mainLeft'/>
+			<img src='gifs/arrowr.gif' class=button id='mainRight'/>
+		</div>
+		<img id=mainScreen src='art/main/1.jpeg' class="screen"/>
+	</div>
+	<script>
+		let main = [
+			"1.jpeg",
+			"2.jpeg",
+			"3.jpeg",
+			"4.jpeg",
+			"5.jpeg",
+			"6.jpeg",
+			"7.jpeg",
+			"8.jpeg",
+			"9.jpeg",
+			"10.jpeg",
+			"11.jpeg",
+			"12.jpeg",
+			"13.jpeg",
+			"14.jpeg",
+			"15.jpeg",
+			"16.jpeg",
+			"17.jpeg",
+			"18.jpeg",
+			"19.jpeg",
+			"20.jpeg",
+			"21.jpeg",
+			"22.jpeg",
+			"23.jpeg",
+			"24.jpeg",
+			"25.jpeg",
+			"26.jpeg",
+			"27.jpeg",
+			"28.jpeg",
+			"29.jpeg",
+			"30.jpeg",
+			"31.jpeg",
+			"32.jpeg",
+			"33.jpeg",
+			"34.jpeg",
+			"35.jpeg",
+			"36.jpeg",
+			"37.jpeg",
+			"38.jpeg",
+			"39.jpeg",
+			"40.jpeg",
+			"41.jpeg",
+			"42.jpeg",
+			"43.jpeg"]
+		let mainIndex = random(0, main.length - 1)
+		shuffle(main)
+		get('mainScreen').src = 'art/main/' + main[mainIndex]
+		get('mainLeft').onclick = function() {
+			mainIndex = decrement(mainIndex, main.length - 1)
+			get('mainScreen').src = 'art/main/' + main[mainIndex]
+		}
+		get('mainRight').onclick = function() {
+			mainIndex = increment(mainIndex, main.length - 1)
+			get('mainScreen').src = 'art/main/' + main[mainIndex]
+		}
+	</script>
+
+	<!------------------------------------------------>
+	<!-- C A R T O O N -->
+	<!------------------------------------------------>
+	<div class=page id=cartoon>
+		<br>
+		<div>
+			<img src='gifs/arrowl.gif' class=button id='cartoonLeft'/>
+			<img src='gifs/arrowr.gif' class=button id='cartoonRight'/>
+		</div>
+		<img id=cartoonScreen class="screen"/>
+	</div>
+	<script>
+		let cartoon = [
+			"1.jpeg",
+			"2.jpeg",
+			"3.jpeg",
+			"4.jpeg",
+			"5.jpeg",
+			"6.jpeg",
+			"7.jpeg",
+			"8.jpeg",
+			"9.jpeg",
+			"10.jpeg",
+			"11.jpeg",
+			"12.jpeg"]
+		shuffle(cartoon)
+		let cartoonIndex = random(0, cartoon.length - 1)	
+		get('cartoonScreen').src = 'art/cartoon/' + cartoon[cartoonIndex]
+		get('cartoonLeft').onclick = function() {
+			cartoonIndex = decrement(cartoonIndex, cartoon.length - 1)
+			get('cartoonScreen').src = 'art/cartoon/' + cartoon[cartoonIndex]
+		}
+		get('cartoonRight').onclick = function() {
+			cartoonIndex = increment(cartoonIndex, cartoon.length - 1)
+			get('cartoonScreen').src = 'art/cartoon/' + cartoon[cartoonIndex]
+		}
+	</script>
+	
+	<!------------------------------------------------>
+	<!-- D I G I T A L -->
+	<!------------------------------------------------>
+	<div class=page id=digital>
+		<br>
+		<div>
+			<img src='gifs/arrowl.gif' class=button id='digitalLeft'/>
+			<img src='gifs/arrowr.gif' class=button id='digitalRight'/>
+		</div>
+		<img id=digitalScreen class="screen"/>
+	</div>
+	<script>
+		let digital = [
+			"1.jpeg",
+			"2.jpeg",
+			"3.jpeg",
+			"4.jpeg",
+			"5.jpeg",
+			"6.jpeg",
+			"7.jpeg",
+			"8.jpeg",
+			"9.jpeg",
+			"10.jpeg",
+			"11.jpeg",
+			"12.jpeg",
+			"13.jpeg",
+			"14.jpeg",
+			"15.jpeg",
+			"16.jpeg",
+			"17.jpeg",
+			"18.jpeg"]
+		shuffle(digital)	
+		let digitalIndex = random(0, digital.length - 1)
+		get('digitalScreen').src = 'art/digital/' + digital[digitalIndex]
+		get('digitalLeft').onclick = function() {
+			digitalIndex = decrement(digitalIndex, digital.length - 1)
+			get('digitalScreen').src = 'art/digital/' + digital[digitalIndex]
+		}
+		get('digitalRight').onclick = function() {
+			digitalIndex = increment(digitalIndex, digital.length - 1)
+			get('digitalScreen').src = 'art/digital/' + digital[digitalIndex]
+		}
+	</script>
 
 	<!------------------------------------------------>
 	<!-- B W -->
@@ -197,7 +347,7 @@ arrows higher up
 			<img src='gifs/arrowl.gif' class=button id='bwLeft'/>
 			<img src='gifs/arrowr.gif' class=button id='bwRight'/>
 		</div>
-		<img id=bwScreen src='art/bw/1.jpeg' class="screen"/>
+		<img id=bwScreen class="screen"/>
 	</div>
 	<script>
 		let bw = [
@@ -253,11 +403,10 @@ arrows higher up
 			"50.jpeg",
 			"51.jpeg",
 			"52.jpeg"]
-		let bwIndex = 0
+		let bwIndex = random(0, bw.length - 1)
 		shuffle(bw)
-		get('bw').src = 'bw/' + bw[bwIndex]
+		get('bwScreen').src = 'art/bw/' + bw[bwIndex]
 		get('bwLeft').onclick = function() {
-			playSound('punch2', .5)
 			bwIndex = decrement(bwIndex, bw.length - 1)
 			get('bwScreen').src = 'art/bw/' + bw[bwIndex]
 		}
@@ -267,31 +416,112 @@ arrows higher up
 		}
 	</script>
 
+
+	<!------------------------------------------------>
+	<!-- S C H O O L -->
+	<!------------------------------------------------>
+	<div class=page id=school>
+		<br>
+		<div>
+			<img src='gifs/arrowl.gif' class=button id='schoolLeft'/>
+			<img src='gifs/arrowr.gif' class=button id='schoolRight'/>
+		</div>
+		<img id=schoolScreen class="screen"/>
+	</div>
+	<script>
+		let school = [
+			"1.jpeg",
+			"2.jpeg",
+			"3.jpeg",
+			"4.jpeg",
+			"5.jpeg",
+			"6.jpeg",
+			"7.jpeg",
+			"8.jpeg",
+			"9.jpeg",
+			"10.jpeg",
+			"11.jpeg",
+			"12.jpeg",
+			"13.jpeg",
+			"14.jpeg",
+			"15.jpeg",
+			"16.jpeg",
+			"17.jpeg",
+			"18.jpeg",
+			"19.jpeg",
+			"20.jpeg",
+			"21.jpeg",
+			"22.jpeg",
+			"23.jpeg",
+			"24.jpeg",
+			"25.jpeg",
+			"26.jpeg",
+			"27.jpeg",
+			"28.jpeg",
+			"29.jpeg",
+			"30.jpeg",
+			"31.jpeg",
+			"32.jpeg",
+			"33.jpeg",
+			"34.jpeg",
+			"35.jpeg",
+			"36.jpeg",
+			"37.jpeg",
+			"38.jpeg",
+			"39.jpeg",
+			"40.jpeg",
+			"41.jpeg"]
+		shuffle(school)
+		let schoolIndex = random(0, school.length - 1)
+		get('schoolScreen').src = 'art/school/' + school[schoolIndex]
+		get('schoolLeft').onclick = function() {
+			schoolIndex = decrement(schoolIndex, school.length - 1)
+			get('schoolScreen').src = 'art/school/' + school[schoolIndex]
+		}
+		get('schoolRight').onclick = function() {
+			schoolIndex = increment(schoolIndex, school.length - 1)
+			get('schoolScreen').src = 'art/school/' + school[schoolIndex]
+		}
+	</script>
+
 	<!------------------------------------------------>
 	<!-- MEMES -->
 	<!------------------------------------------------>
 	<div class=page id=memes>
+		<br>
 		<div>
 			<img src='gifs/arrowl.gif' class=button id='memeLeft'/>
 			<img src='gifs/arrowr.gif' class=button id='memeRight'/>
 		</div>
-		<img src='art/memes/1.jpeg' class=screen/>
+		<img id="memeScreen" class='screen'/>
 	</div>
 	<script>
-		let memes = ['1.jpeg', '2.jpeg', '3.jpeg', '4.jpeg', '5.jpeg', '6.jpeg', '7.jpeg']
-		let memeIndex = 0
+		let memes = [
+			'1.jpeg', 
+			'2.jpeg', 
+			'3.jpeg', 
+			'4.jpeg', 
+			'5.jpeg', 
+			'6.jpeg', 
+			'7.jpeg',
+			'8.jpeg',
+			'9.jpeg',
+			'10.jpeg']
+		let memeIndex = random(0, memes.length - 1)
 		shuffle(memes)
-		get('memeScreen').src = 'memes/' + memes[memeIndex]
+		get('memeScreen').src = 'art/memes/' + memes[memeIndex]
 		get('memeLeft').onclick = function() {
 			memeIndex = decrement(memeIndex, memes.length - 1)
-			get('memeScreen').src = 'memes/' + memes[memeIndex]
+			get('memeScreen').src = 'art/memes/' + memes[memeIndex]
 		}
 		get('memeRight').onclick = function() {
 			memeIndex = increment(memeIndex, memes.length - 1)
-			get('memeScreen').src = 'memes/' + memes[memeIndex]
+			get('memeScreen').src = 'art/memes/' + memes[memeIndex]
 		}
 	</script>
 
 
+	<br><br><br><br><br><br><br><br><br>
+	<img src='gifs/cat.gif'/>
 </body>
 </html>

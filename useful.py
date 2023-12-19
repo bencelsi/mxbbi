@@ -1,6 +1,6 @@
 import os
 
-directory = './art/memes'
+directory = './art/school'
 extension = '.jpeg'
 def print_as_array():
     print('[')
