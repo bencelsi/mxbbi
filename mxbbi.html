@@ -96,21 +96,11 @@ arrows higher up
 		}
 
 		function increment(value, maxValue) {
-			console.log(value)
-			if (value == maxValue) {
-				return 0
-			} else {
-				return value + 1
-			}
+			return (value == maxValue) ? 0 : value + 1
 		}
 
 		function decrement(value, maxValue) {
-			console.log(value)
-			if (value == 0) {
-				return maxValue
-			} else {
-				return value - 1
-			}
+			return (value == 0) ? maxValue : value - 1
 		}
 		
 		function playSound(name) {
@@ -158,6 +148,9 @@ arrows higher up
 		</div>
 		<div class='tab' page='cartoon' >
 			<img src='gifs/tabs/homer.gif ' style="width: 175px"/>
+		</div>
+		<div class='tab' page='drawings' >
+			<img src='gifs/tabs/rain.gif ' style="width: 175px"/>
 		</div>
 		<div class='tab' page='bw'>
 			<img src='gifs/tabs/city.gif' style="width: 150px"/>
@@ -300,6 +293,42 @@ arrows higher up
 			get('cartoonScreen').src = 'art/cartoon/' + cartoon[cartoonIndex]
 		}
 	</script>
+
+	<!------------------------------------------------>
+	<!-- D R A W I N G S -->
+	<!------------------------------------------------>
+	<div class=page id=drawings>
+		<br>
+		<div>
+			<img src='gifs/arrowl.gif' class=button id='drawingsLeft'/>
+			<img src='gifs/arrowr.gif' class=button id='drawingsRight'/>
+		</div>
+		<img id=drawingsScreen class="screen"/>
+	</div>
+	<script>
+		let drawings = [
+			"1.jpeg",
+			"2.jpeg",
+			"3.jpeg",
+			"4.jpeg",
+			"5.jpeg",
+			"6.jpeg",
+			"7.jpeg",
+			"8.jpeg",
+			"9.jpeg",
+			"10.jpeg"]
+		shuffle(drawings)
+		let drawingsIndex = random(0, drawings.length - 1)	
+		get('drawingsScreen').src = 'art/drawings/' + drawings[drawingsIndex]
+		get('drawingsLeft').onclick = function() {
+			drawingsIndex = decrement(drawingsIndex, drawings.length - 1)
+			get('drawingsScreen').src = 'art/drawings/' + drawings[cdrawingsIndex]
+		}
+		get('drawingsRight').onclick = function() {
+			drawingsIndex = increment(drawingsIndex, drawings.length - 1)
+			get('drawingsScreen').src = 'art/drawings/' + drawings[drawingsIndex]
+		}
+	</script>
 	
 	<!------------------------------------------------>
 	<!-- D I G I T A L -->
@@ -409,16 +438,7 @@ arrows higher up
 			"49.jpeg",
 			"50.jpeg",
 			"51.jpeg",
-			"52.jpeg",
-			"53.jpeg",
-			"54.jpeg",
-			"55.jpeg",
-			"56.jpeg",
-			"57.jpeg",
-			"58.jpeg",
-			"59.jpeg",
-			"60.jpeg",
-			"61.jpeg"]
+			"52.jpeg"]
 		let bwIndex = random(0, bw.length - 1)
 		shuffle(bw)
 		get('bwScreen').src = 'art/bw/' + bw[bwIndex]
