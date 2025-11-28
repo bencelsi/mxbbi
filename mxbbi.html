@@ -318,11 +318,11 @@ arrows higher up
 			"9.jpeg",
 			"10.jpeg"]
 		shuffle(drawings)
-		let drawingsIndex = random(0, drawings.length - 1)	
+		let drawingsIndex = random(0, drawings.length - 1)
 		get('drawingsScreen').src = 'art/drawings/' + drawings[drawingsIndex]
 		get('drawingsLeft').onclick = function() {
 			drawingsIndex = decrement(drawingsIndex, drawings.length - 1)
-			get('drawingsScreen').src = 'art/drawings/' + drawings[cdrawingsIndex]
+			get('drawingsScreen').src = 'art/drawings/' + drawings[drawingsIndex]
 		}
 		get('drawingsRight').onclick = function() {
 			drawingsIndex = increment(drawingsIndex, drawings.length - 1)
